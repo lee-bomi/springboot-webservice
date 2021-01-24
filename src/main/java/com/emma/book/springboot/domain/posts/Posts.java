@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@Entity
+@Entity  //절대 setter를 만들지 않는다
 public class Posts {
 
     @Id
