@@ -1,6 +1,6 @@
-package com.jojoldu.book.springboot.web.dto;
+package com.emma.book.springboot.web.dto;
 
-import com.jojoldu.book.springboot.domain.posts.Posts;
+import com.emma.book.springboot.domain.posts.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
