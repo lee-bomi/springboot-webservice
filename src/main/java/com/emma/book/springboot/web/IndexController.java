@@ -1,24 +1,30 @@
 package com.emma.book.springboot.web;
 
+import com.emma.book.springboot.config.auth.LoginUser;
+import com.emma.book.springboot.config.auth.dto.SessionUser;
 import com.emma.book.springboot.service.posts.PostsService;
 import com.emma.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
 public class IndexController {           //페이지 관련된 컨트롤러
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
         return "index";
     }
 
